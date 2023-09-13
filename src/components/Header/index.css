@@ -1,34 +1,61 @@
 .nav-bar-container {
   background-color: #1e1e30;
-  height: 80px;
+  height: 56px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px 50px;
 }
 
+@media screen and (min-width: 768px) {
+  .nav-bar-container {
+    height: 80px;
+    flex-shrink: 0;
+  }
+}
+
 .nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-bar {
+    width: 80%;
+  }
 }
 
 .nav-bar-menu {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  list-style-type: none;
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-bar-menu {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style-type: none;
+    width: 30%;
+  }
 }
 
 .logo {
   color: var(--light-blue-gray-50, #f8fafc);
   text-align: center;
   font-family: 'Bree Serif';
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 120% */
+}
+
+@media screen and (min-width: 768px) {
+  .logo {
+    font-size: 20px;
+    line-height: 24px; /* 150% */
+  }
 }
 
 .india-text {
@@ -47,4 +74,63 @@
   font-weight: 500;
   line-height: 24px; /* 150% */
   margin-left: 12px;
+}
+
+.toggle-btn {
+  display: block;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .toggle-btn {
+    display: none;
+  }
+}
+
+.mobile-menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.mobile-menu {
+  background: #161625;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.mobile-menu-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none;
+  padding-left: 0;
+  width: 30%;
+}
+
+.mobile-item {
+  color: var(--light-blue-gray-400, #94a3b8);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: -0.356px;
+  margin-right: 8px;
+}
+
+.cross-btn {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
 }
