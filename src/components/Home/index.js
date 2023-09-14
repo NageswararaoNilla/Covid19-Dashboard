@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 
-import {MdOutlineSearch} from 'react-icons/md'
+import {BsSearch} from 'react-icons/bs'
 import {FcGenericSortingAsc, FcGenericSortingDesc} from 'react-icons/fc'
 
 import Header from '../Header'
@@ -273,7 +273,7 @@ class Home extends Component {
           <img
             className="stats-icon"
             src="https://res.cloudinary.com/dducblq2m/image/upload/v1694250424/Covid19%20Dashboard/protection_1_wbesfb.svg"
-            alt="country wide confirmed cases pic"
+            alt="country wide active cases pic"
           />
           <p className="stats-count blue">{totalCounts.active}</p>
         </div>
@@ -282,7 +282,7 @@ class Home extends Component {
           <img
             className="stats-icon"
             src="https://res.cloudinary.com/dducblq2m/image/upload/v1694250425/Covid19%20Dashboard/recovered_1_qpdppi.svg"
-            alt="country wide confirmed cases pic"
+            alt="country wide recovered cases pic"
           />
           <p className="stats-count green">{totalCounts.recovered}</p>
         </div>
@@ -291,7 +291,7 @@ class Home extends Component {
           <img
             className="stats-icon"
             src="https://res.cloudinary.com/dducblq2m/image/upload/v1694250424/Covid19%20Dashboard/breathing_1_q9lzyd.svg"
-            alt="country wide confirmed cases pic"
+            alt="country wide deceased cases pic"
           />
           <p className="stats-count gray">{totalCounts.deceased}</p>
         </div>
@@ -387,7 +387,7 @@ class Home extends Component {
   renderSuccessView = () => (
     <>
       <div className="country-stats">{this.renderNationalData()}</div>
-      <div className="table-container">
+      <div className="table-container" data-testid="stateWiseCovidDataTable">
         <div className="states-table">{this.renderStatesTableData()}</div>
       </div>
     </>
@@ -453,7 +453,7 @@ class Home extends Component {
         <Header />
         <div className="responsive-container">
           <div className="search-container">
-            <MdOutlineSearch size={20} color="#94A3B8" />
+            <BsSearch size={20} color="#94A3B8" />
             <input
               type="search"
               placeholder="Enter the State"

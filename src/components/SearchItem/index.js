@@ -7,7 +7,7 @@ const SearchItem = props => {
 
   return (
     <li>
-      <Link to={`/state/${stateCode}`} className="link-search">
+      <Link to={`/state/${stateCode}`} className="link">
         <div className="search-result">
           <h1 className="search-result-heading">{stateName}</h1>
           <button type="button" className="search-button">
