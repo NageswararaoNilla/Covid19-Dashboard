@@ -6,6 +6,7 @@ import {FcGenericSortingAsc, FcGenericSortingDesc} from 'react-icons/fc'
 
 import Header from '../Header'
 import Footer from '../Footer'
+import SearchItem from '../SearchItem'
 
 import './index.css'
 
@@ -168,7 +169,11 @@ const apiStatusConstants = {
 }
 
 class Home extends Component {
-  state = {apiStatus: apiStatusConstants.initial, stateWiseData: []}
+  state = {
+    apiStatus: apiStatusConstants.initial,
+    stateWiseData: [],
+    searchInput: '',
+  }
 
   componentDidMount() {
     this.getAllData()
@@ -191,8 +196,8 @@ class Home extends Component {
     }
   }
 
-  convertObjectsDataIntoListItemsUsingForInMethod = async data => {
-    console.log(data)
+  convertObjectsDataIntoListItemsUsingForInMethod = data => {
+    // console.log(data)
     const resultList = []
     // getting keys of an object object
     const keyNames = Object.keys(data)
@@ -294,6 +299,27 @@ class Home extends Component {
     )
   }
 
+  onClickAscendingSort = () => {
+    const {stateWiseData} = this.state
+    // console.log(stateWiseData)
+    const sortedList = stateWiseData.sort((a, b) => {
+      const x = a.name.toUpperCase()
+      const y = b.name.toUpperCase()
+      return x > y ? 1 : -1
+    })
+    this.setState({stateWiseData: sortedList})
+  }
+
+  onClickDescendingSort = () => {
+    const {stateWiseData} = this.state
+    const sortedList = stateWiseData.sort((a, b) => {
+      const x = a.name.toUpperCase()
+      const y = b.name.toUpperCase()
+      return x < y ? 1 : -1
+    })
+    this.setState({stateWiseData: sortedList})
+  }
+
   renderStatesTableData = () => {
     const {stateWiseData} = this.state
     //  const stateNames = statesList.map(each => ({
@@ -310,7 +336,7 @@ class Home extends Component {
               className="sorting-btn"
               type="button"
               data-testid="ascendingSort"
-              onClick={this.whenAscendingSortButtonClicked}
+              onClick={this.onClickAscendingSort}
             >
               <FcGenericSortingAsc className="sorting-icon" />
             </button>
@@ -319,7 +345,7 @@ class Home extends Component {
               className="sorting-btn"
               type="button"
               data-testid="descendingSort"
-              onClick={this.whenDescendingSortButtonClicked}
+              onClick={this.onClickDescendingSort}
             >
               <FcGenericSortingDesc className="sorting-icon" />
             </button>
@@ -335,13 +361,14 @@ class Home extends Component {
         <hr className="line" />
         <ul className="states-list">
           {stateWiseData.map(eachState => {
-            console.log(eachState)
+            // console.log(eachState)
             //  const name = stateNames.find(
             //  state => state.stateCode === eachState.stateCode)
             //  console.log(name.stateName)
+            const stateName = eachState.name
             return (
               <li className="list-item" key={eachState.stateCode}>
-                <p className="state-name">{eachState.name}</p>
+                <p className="state-name">{stateName}</p>
                 <div className="numbers-container">
                   <p className="number red">{eachState.confirmed}</p>
                   <p className="number blue">{eachState.active}</p>
@@ -360,7 +387,9 @@ class Home extends Component {
   renderSuccessView = () => (
     <>
       <div className="country-stats">{this.renderNationalData()}</div>
-      <div className="states-table">{this.renderStatesTableData()}</div>
+      <div className="table-container">
+        <div className="states-table">{this.renderStatesTableData()}</div>
+      </div>
     </>
   )
 
@@ -391,7 +420,34 @@ class Home extends Component {
     }
   }
 
+  showSearchList = () => {
+    const {searchInput} = this.state
+    const searchList = statesList.filter(data =>
+      data.state_name.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+    return (
+      <ul
+        className="search-result-container"
+        data-testid="searchResultsUnorderedList"
+      >
+        {searchList.map(each => (
+          <SearchItem
+            key={each.state_code}
+            stateName={each.state_name}
+            stateCode={each.state_code}
+          />
+        ))}
+      </ul>
+    )
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
   render() {
+    const {searchInput} = this.state
+    //  console.log(searchInput)
     return (
       <div className="app-container">
         <Header />
@@ -402,8 +458,10 @@ class Home extends Component {
               type="search"
               placeholder="Enter the State"
               className="search-input"
+              onChange={this.onChangeSearchInput}
             />
           </div>
+          {searchInput.length > 0 && this.showSearchList()}
           {this.renderAllHomeData()}
           <Footer />
         </div>
