@@ -32,45 +32,57 @@
   font-family: 'Roboto';
 }
 
-.Confirmed {
+.confirmed {
   color: #ff073a;
 }
-.Confirmed:focus {
+.confirmed:focus {
   background: #331427;
 }
-.Confirmed:hover {
+.confirmed:hover {
   background: #331427;
 }
-.Active {
+.active {
   color: #007bff;
 }
-.Active:focus {
+.active:focus {
   background: #132240;
 }
-.Active:hover {
+.active:hover {
   background: #132240;
 }
-.Recovered {
+.recovered {
   color: #28a745;
 }
-.Recovered:focus {
+.recovered:focus {
   background: #182829;
 }
-.Recovered:hover {
+.recovered:hover {
   background: #182829;
 }
-.Deceased {
+.deceased {
   color: #6c757d;
 }
-.Deceased:focus {
+.deceased:focus {
   background: #212230;
 }
-.Deceased:hover {
+.deceased:hover {
   background: #212230;
 }
 
 .confirmed-block {
   background: #331427;
+}
+
+.active-block {
+  background: #132240;
+}
+
+.recovered-block {
+  background: #182829;
+}
+
+.deceased-block {
+  background: #212230;
 }
 
 .card {

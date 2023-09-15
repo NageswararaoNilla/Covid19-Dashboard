@@ -306,7 +306,7 @@ class StateSpecific extends Component {
               <div className="district-data-ul-list">
                 <ul
                   className="districts-container"
-                  data-testid="topDistrictsUnorderedList"
+                  testid="topDistrictsUnorderedList"
                 >
                   {categoryData.map(each => (
                     <ShowEachDistrictData
@@ -318,7 +318,7 @@ class StateSpecific extends Component {
                 </ul>
               </div>
             </div>
-            <div className="graphs-data" data-testid="lineChartsContainer">
+            <div className="graphs-data">
               <ChartsData stateCode={stateCode} category={category} />
             </div>
           </div>
@@ -328,7 +328,7 @@ class StateSpecific extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" data-testid="stateDetailsLoader">
+    <div className="loader-container" testid="stateDetailsLoader">
       <Loader type="Oval" color="#0b69ff" height="50" width="50" />
     </div>
   )

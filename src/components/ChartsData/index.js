@@ -14,7 +14,7 @@ import './index.css'
 
 class ChartsData extends Component {
   state = {
-    alldata: '',
+    allData: '',
     forOtherChart: '',
     isLoading: true,
   }
@@ -25,44 +25,49 @@ class ChartsData extends Component {
 
   getChartData = async () => {
     const {stateCode} = this.props
-    console.log(stateCode)
-    const apiUrl = `https://apis.ccbp.in/covid19-timelines-data`
+    //  console.log(stateCode)
+    const apiUrl = `https://apis.ccbp.in/covid19-timelines-data/${stateCode}`
     const options = {
       method: 'GET',
     }
 
     const response = await fetch(apiUrl, options)
-    if (response.ok) {
+
+    //  console.log(response)
+
+    if (response.ok === true) {
       const data = await response.json()
+      const {dates} = data[stateCode]
 
-      const dataDateWise = Object.keys(data[stateCode].dates)
+      // console.log(dates)
 
+      const dataDateWise = Object.keys(dates)
+
+      console.log(data, dataDateWise)
       const particularState = dataDateWise.map(date => ({
         date,
-        confirmed: data[stateCode].dates[date].total.confirmed,
-        deceased: data[stateCode].dates[date].total.deceased,
-        recovered: data[stateCode].dates[date].total.recovered,
-        tested: data[stateCode].dates[date].total.tested,
+        confirmed: dates[date].total.confirmed,
+        deceased: dates[date].total.deceased,
+        recovered: dates[date].total.recovered,
+        tested: dates[date].total.tested,
         active:
-          data[stateCode].dates[date].total.confirmed -
-          (data[stateCode].dates[date].total.deceased +
-            data[stateCode].dates[date].total.recovered),
+          dates[date].total.confirmed -
+          (dates[date].total.deceased + dates[date].total.recovered),
       }))
 
       const particularStateForOtherChart = dataDateWise.map(date => ({
         date,
-        confirmed: data[stateCode].dates[date].total.confirmed,
-        deceased: data[stateCode].dates[date].total.deceased,
-        recovered: data[stateCode].dates[date].total.recovered,
-        tested: data[stateCode].dates[date].total.tested,
+        confirmed: dates[date].total.confirmed,
+        deceased: dates[date].total.deceased,
+        recovered: dates[date].total.recovered,
+        tested: dates[date].total.tested,
         active:
-          data[stateCode].dates[date].total.confirmed -
-          (data[stateCode].dates[date].total.deceased +
-            data[stateCode].dates[date].total.recovered),
+          dates[date].total.confirmed -
+          (dates[date].total.deceased + dates[date].total.recovered),
       }))
 
       this.setState({
-        alldata: particularState,
+        allData: particularState,
         forOtherChart: particularStateForOtherChart,
         isLoading: false,
       })
@@ -70,20 +75,17 @@ class ChartsData extends Component {
   }
 
   renderLoadingView = () => (
-    <div
-      className="products-details-loader-container"
-      data-testid="timelinesDataLoader"
-    >
+    <div className="loader-container" testid="timelinesDataLoader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
 
   barChart = () => {
-    const {alldata} = this.state
+    const {allData} = this.state
     const {category} = this.props
     const barChartType = category.toLowerCase()
 
-    const toptendata = alldata.slice(Math.max(alldata.length - 10, 0))
+    const toptendata = allData.slice(Math.max(allData.length - 10, 0))
     // console.log('all data for bar chart')
     // console.log(toptendata)
     let colortype = '#9A0E31'
@@ -162,7 +164,7 @@ class ChartsData extends Component {
       <div className="barchart-container">{this.barChart()}</div>
 
       <h1 className="charts-title">Spread Trends</h1>
-      <div data-testid="lineChartsContainer" className="barcharts-container">
+      <div className="barcharts-container" testid="lineChartsContainer">
         <div className="charts confirmed-background">
           {this.graph('confirmed', '#FF073A')}
         </div>
