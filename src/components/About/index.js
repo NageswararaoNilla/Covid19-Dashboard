@@ -63,7 +63,7 @@ class About extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="about-loader-container" data-testid="aboutRouteLoader">
+    <div className="loader-container" data-testid="aboutRouteLoader">
       <Loader type="Oval" color="#0b69ff" height="40" width="40" />
     </div>
   )

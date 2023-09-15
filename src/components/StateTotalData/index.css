@@ -1,0 +1,123 @@
+.ul-list-eachstate {
+  list-style-type: none;
+
+  padding: 0;
+  margin-left: -20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width: 768px) {
+  .ui-list-eachstate {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+}
+
+.category-item {
+  text-align: center;
+  min-width: 120px;
+  margin: 0px 10px;
+  padding: 25px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: 'Roboto';
+}
+
+.Confirmed {
+  color: #ff073a;
+}
+.Confirmed:focus {
+  background: #331427;
+}
+.Confirmed:hover {
+  background: #331427;
+}
+.Active {
+  color: #007bff;
+}
+.Active:focus {
+  background: #132240;
+}
+.Active:hover {
+  background: #132240;
+}
+.Recovered {
+  color: #28a745;
+}
+.Recovered:focus {
+  background: #182829;
+}
+.Recovered:hover {
+  background: #182829;
+}
+.Deceased {
+  color: #6c757d;
+}
+.Deceased:focus {
+  background: #212230;
+}
+.Deceased:hover {
+  background: #212230;
+}
+
+.confirmed-block {
+  background: #331427;
+}
+
+.card {
+  width: 148px;
+  height: 148px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 264px;
+    height: 232px;
+    border-radius: 12px;
+  }
+}
+
+.stats-number {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .stats-number {
+    font-size: 24px;
+  }
+}
+
+.stats-title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .stats-title {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
