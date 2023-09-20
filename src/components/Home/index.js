@@ -259,7 +259,7 @@ class Home extends Component {
     // console.log(totalCounts)
     return (
       <>
-        <div className="stats-block" testid="countryWideConfirmedCases">
+        <div className="stats-block" data-testid="countryWideConfirmedCases">
           <p className="stats-title red">Confirmed</p>
           <img
             className="stats-icon"
@@ -268,7 +268,7 @@ class Home extends Component {
           />
           <p className="stats-count red">{totalCounts.confirmed}</p>
         </div>
-        <div className="stats-block" testid="countryWideActiveCases">
+        <div className="stats-block" data-testid="countryWideActiveCases">
           <p className="stats-title blue">Active</p>
           <img
             className="stats-icon"
@@ -277,7 +277,7 @@ class Home extends Component {
           />
           <p className="stats-count blue">{totalCounts.active}</p>
         </div>
-        <div className="stats-block" testid="countryWideRecoveredCases">
+        <div className="stats-block" data-testid="countryWideRecoveredCases">
           <p className="stats-title green">Recovered</p>
           <img
             className="stats-icon"
@@ -286,7 +286,7 @@ class Home extends Component {
           />
           <p className="stats-count green">{totalCounts.recovered}</p>
         </div>
-        <div className="stats-block" testid="countryWideDeceasedCases">
+        <div className="stats-block" data-testid="countryWideDeceasedCases">
           <p className="stats-title gray">Deceased</p>
           <img
             className="stats-icon"
@@ -335,7 +335,7 @@ class Home extends Component {
             <button
               className="sorting-btn"
               type="button"
-              testid="ascendingSort"
+              data-testid="ascendingSort"
               onClick={this.onClickAscendingSort}
             >
               <FcGenericSortingAsc className="sorting-icon" />
@@ -344,7 +344,7 @@ class Home extends Component {
             <button
               className="sorting-btn"
               type="button"
-              testid="descendingSort"
+              data-testid="descendingSort"
               onClick={this.onClickDescendingSort}
             >
               <FcGenericSortingDesc className="sorting-icon" />
@@ -387,7 +387,7 @@ class Home extends Component {
   renderSuccessView = () => (
     <>
       <div className="country-stats">{this.renderNationalData()}</div>
-      <div className="table-container" testid="stateWiseCovidDataTable">
+      <div className="table-container" data-testid="stateWiseCovidDataTable">
         <div className="states-table">{this.renderStatesTableData()}</div>
       </div>
     </>
@@ -400,7 +400,7 @@ class Home extends Component {
   )
 
   renderLoadingView = () => (
-    <div className="loader-dots" testid="homeRouteLoader">
+    <div className="loader-dots" data-testid="homeRouteLoader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -428,7 +428,7 @@ class Home extends Component {
     return (
       <ul
         className="search-result-container"
-        testid="searchResultsUnorderedList"
+        data-testid="searchResultsUnorderedList"
       >
         {searchList.map(each => (
           <SearchItem

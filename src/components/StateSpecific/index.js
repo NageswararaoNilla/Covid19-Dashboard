@@ -175,7 +175,7 @@ class StateSpecific extends Component {
     apiStatus: apiStatusConstants.initial,
     stateDetails: {},
     category: categoryConstants.confirmed,
-    activeTab: true,
+    // activeTab: true,
     //  activeCases: activeCasesConstants.confirmed,
   }
 
@@ -259,12 +259,12 @@ class StateSpecific extends Component {
   }
 
   onGetCategory = categoryVal => {
-    this.setState({category: categoryVal, activeTab: false})
-    // this.setState({category: categoryVal})
+    // this.setState({category: categoryVal, activeTab: false})
+    this.setState({category: categoryVal})
   }
 
   renderSuccessView = () => {
-    const {stateDetails, category, activeTab} = this.state
+    const {stateDetails, category} = this.state
     const {
       nameOfState,
       totalTestedData,
@@ -273,6 +273,26 @@ class StateSpecific extends Component {
       stateCode,
     } = stateDetails
 
+    const getDateWith = day => {
+      switch (day) {
+        case 1:
+          return '1st'
+        case 2:
+          return '2nd'
+        case 3:
+          return '3rd'
+        default:
+          return `${day}th`
+      }
+    }
+
+    // console.log(date.getMonth())
+    const monthName = date.toLocaleString('default', {month: 'long'})
+    const year = date.getFullYear()
+    const dateWith = getDateWith(date.getDate())
+
+    // console.log(dateWith)
+
     const categoryData = this.getCategoryWiseData()
 
     return (
@@ -280,20 +300,20 @@ class StateSpecific extends Component {
         <div className="state-details">
           <div className="state-name-row">
             <h1 className="state-name-container">{nameOfState}</h1>
-            <div className="testno-container">
+            <div className="test-no-container">
               <p className="test-title">Tested</p>
-              <p className="testno">{totalTestedData}</p>
+              <p className="test-no">{totalTestedData}</p>
             </div>
           </div>
           <div>
-            <p className="last-date">{`last update on ${date}`}</p>
+            <p className="last-date">{`last update on ${monthName} ${dateWith}  ${year}`}</p>
           </div>
           <div className="align-center-row">
-            <div className="country-stats">
+            <div className="state-stats">
               <StateTotalData
                 onGetCategory={this.onGetCategory}
                 eachStateTotalData={eachStateTotalData}
-                active={activeTab}
+                activeTab={category}
               />
             </div>
           </div>
@@ -306,7 +326,7 @@ class StateSpecific extends Component {
               <div className="district-data-ul-list">
                 <ul
                   className="districts-container"
-                  testid="topDistrictsUnorderedList"
+                  data-testid="topDistrictsUnorderedList"
                 >
                   {categoryData.map(each => (
                     <ShowEachDistrictData
@@ -328,7 +348,7 @@ class StateSpecific extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="stateDetailsLoader">
+    <div className="loader-container" data-testid="stateDetailsLoader">
       <Loader type="Oval" color="#0b69ff" height="50" width="50" />
     </div>
   )

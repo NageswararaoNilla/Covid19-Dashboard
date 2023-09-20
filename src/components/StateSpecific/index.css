@@ -5,8 +5,14 @@
 }
 
 .state-details {
-  width: 80%;
+  width: 90%;
   margin-top: 64px;
+}
+
+@media screen and (min-width: 768px) {
+  .state-details {
+    width: 80%;
+  }
 }
 
 .state-name-row {
@@ -76,7 +82,7 @@
   }
 }
 
-.testno {
+.test-no {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
@@ -87,7 +93,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .testno {
+  .test-no {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
@@ -118,12 +124,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 64px;
+  margin-top: 36px;
 }
 
-.hovereffectconfirm:active {
+/* .hovereffectconfirm:active {
   background-color: #331427;
-}
+} */
 
 .district-heading {
   font-family: Roboto;
@@ -133,10 +139,18 @@
   line-height: 48px;
 }
 
+.state-stats {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
 .confirm {
   color: #ff073a;
 }
-
+/* 
 .confirmed-block {
   background: #331427;
   border-radius: 12px;
@@ -159,7 +173,7 @@
   background: #212230;
   border-radius: 12px;
   padding: 42px;
-}
+} */
 
 .total-district-data-block {
   width: 100%;

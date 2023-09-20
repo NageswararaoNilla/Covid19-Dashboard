@@ -43,7 +43,7 @@ class ChartsData extends Component {
 
       const dataDateWise = Object.keys(dates)
 
-      console.log(data, dataDateWise)
+      // console.log(data, dataDateWise)
       const particularState = dataDateWise.map(date => ({
         date,
         confirmed: dates[date].total.confirmed,
@@ -75,7 +75,7 @@ class ChartsData extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="timelinesDataLoader">
+    <div className="loader-container" data-testid="timelinesDataLoader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -85,18 +85,19 @@ class ChartsData extends Component {
     const {category} = this.props
     const barChartType = category.toLowerCase()
 
-    const toptendata = allData.slice(Math.max(allData.length - 10, 0))
+    const topTenData = allData.slice(Math.max(allData.length - 10, 0))
     // console.log('all data for bar chart')
     // console.log(toptendata)
-    let colortype = '#9A0E31'
+
+    let colorType = '#9A0E31'
     if (barChartType === 'confirmed') {
-      colortype = '#9A0E31'
+      colorType = '#9A0E31'
     } else if (barChartType === 'active') {
-      colortype = '#0A4FA0'
+      colorType = '#0A4FA0'
     } else if (barChartType === 'recovered') {
-      colortype = '#216837'
+      colorType = '#216837'
     } else if (barChartType === 'deceased') {
-      colortype = '#474C57'
+      colorType = '#474C57'
     }
 
     return (
@@ -104,13 +105,13 @@ class ChartsData extends Component {
         <BarChart
           width={800}
           height={500}
-          data={toptendata}
+          data={topTenData}
           barSize={45}
           className="bar-chart"
         >
           <XAxis
             dataKey="date"
-            stroke={`${colortype}`}
+            stroke={`${colorType}`}
             style={{
               fontFamily: 'Roboto',
               fontWeight: 500,
@@ -122,7 +123,7 @@ class ChartsData extends Component {
           <Legend />
           <Bar
             dataKey={`${barChartType}`}
-            fill={`${colortype}`}
+            fill={`${colorType}`}
             label={{position: 'top', fill: '#fff'}}
             radius={[8, 8, 0, 0]}
           />
@@ -161,10 +162,10 @@ class ChartsData extends Component {
 
   allChartsView = () => (
     <>
-      <div className="barchart-container">{this.barChart()}</div>
+      <div className="bar-chart-container">{this.barChart()}</div>
 
       <h1 className="charts-title">Spread Trends</h1>
-      <div className="barcharts-container" testid="lineChartsContainer">
+      <div className="bar-charts-container" data-testid="lineChartsContainer">
         <div className="charts confirmed-background">
           {this.graph('confirmed', '#FF073A')}
         </div>

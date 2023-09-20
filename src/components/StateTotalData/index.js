@@ -7,6 +7,7 @@ class StateTotalData extends Component {
     activeData: {},
     recoveredData: {},
     deceasedData: {},
+    activeTab: 'Confirmed',
   }
 
   componentDidMount() {
@@ -14,7 +15,9 @@ class StateTotalData extends Component {
   }
 
   getEachState = async () => {
+    const {activeTab} = this.state
     const {eachStateTotalData} = this.props
+    // console.log(activeTab)
 
     const totalConfirmed = eachStateTotalData.confirmed
     const totalRecovered = eachStateTotalData.recovered
@@ -28,6 +31,7 @@ class StateTotalData extends Component {
       logo:
         'https://res.cloudinary.com/dducblq2m/image/upload/v1694250424/Covid19%20Dashboard/check-mark_1_tyldxf.svg',
       value: totalConfirmed,
+      className: activeTab === 'Confirmed' ? 'confirmed-block' : '',
     }
 
     const activeData = {
@@ -35,6 +39,7 @@ class StateTotalData extends Component {
       logo:
         'https://res.cloudinary.com/dducblq2m/image/upload/v1694250424/Covid19%20Dashboard/protection_1_wbesfb.svg',
       value: totalActive,
+      className: activeTab === 'Active' ? 'active-block' : '',
     }
 
     const recoveredData = {
@@ -42,12 +47,15 @@ class StateTotalData extends Component {
       logo:
         'https://res.cloudinary.com/dducblq2m/image/upload/v1694250425/Covid19%20Dashboard/recovered_1_qpdppi.svg',
       value: totalRecovered,
+      className: activeTab === 'Recovered' ? 'recovered-block' : '',
     }
+
     const deceasedData = {
       name: 'Deceased',
       logo:
         'https://res.cloudinary.com/dducblq2m/image/upload/v1694250424/Covid19%20Dashboard/breathing_1_q9lzyd.svg',
       value: totalDeceased,
+      className: activeTab === 'Deceased' ? 'deceased-block' : '',
     }
 
     this.setState({
@@ -61,13 +69,16 @@ class StateTotalData extends Component {
   onGetTotal = value => {
     const {onGetCategory} = this.props
     onGetCategory(value)
+    this.setState({activeTab: value}, this.getEachState)
   }
 
   render() {
     const {confirmedData, activeData, recoveredData, deceasedData} = this.state
+    // console.log(confirmedData.className, activeData.className)
 
-    const {active} = this.props
-    const activeOnLoad = active ? 'confirmed-block' : ''
+    // const {active} = this.props
+    // const activeOnLoad = active ? 'confirmed-block' : ''
+
     // const activeTabCases = value => {
     //   switch (value) {
     //     case confirmedData.name:
@@ -87,14 +98,14 @@ class StateTotalData extends Component {
 
     return (
       <>
-        <ul className="ul-list-eachstate">
+        <ul className="ul-list-each-state">
           <li
-            className={`category-item confirmed ${confirmedData.name} ${activeOnLoad} card`}
+            className={`card confirmed ${confirmedData.className}`}
             key={confirmedData.name}
             value={confirmedData.name}
             onClick={() => this.onGetTotal(confirmedData.name)}
           >
-            <div testid="stateSpecificConfirmedCasesContainer">
+            <div data-testid="stateSpecificConfirmedCasesContainer">
               <p className="stats-title">{confirmedData.name}</p>
               <img
                 src={confirmedData.logo}
@@ -105,12 +116,12 @@ class StateTotalData extends Component {
             </div>
           </li>
           <li
-            className={`category-item active ${activeData.name} card`}
+            className={`card active ${activeData.className}`}
             key={activeData.name}
             value={activeData.name}
             onClick={() => this.onGetTotal(activeData.name)}
           >
-            <div testid="stateSpecificActiveCasesContainer">
+            <div data-testid="stateSpecificActiveCasesContainer">
               <p className="stats-title">{activeData.name}</p>
               <img
                 src={activeData.logo}
@@ -121,12 +132,12 @@ class StateTotalData extends Component {
             </div>
           </li>
           <li
-            className={`category-item recovered ${recoveredData.name} card`}
+            className={`card recovered ${recoveredData.className}`}
             key={recoveredData.name}
             value={recoveredData.name}
             onClick={() => this.onGetTotal(recoveredData.name)}
           >
-            <div testid="stateSpecificRecoveredCasesContainer">
+            <div data-testid="stateSpecificRecoveredCasesContainer">
               <p className="stats-title">{recoveredData.name}</p>
               <img
                 src={recoveredData.logo}
@@ -137,12 +148,12 @@ class StateTotalData extends Component {
             </div>
           </li>
           <li
-            className={`category-item deceased ${deceasedData.name} card`}
+            className={`card deceased ${deceasedData.className}`}
             key={deceasedData.name}
             value={deceasedData.name}
             onClick={() => this.onGetTotal(deceasedData.name)}
           >
-            <div testid="stateSpecificDeceasedCasesContainer">
+            <div data-testid="stateSpecificDeceasedCasesContainer">
               <p className="stats-title">{deceasedData.name}</p>
               <img
                 src={deceasedData.logo}
@@ -157,4 +168,5 @@ class StateTotalData extends Component {
     )
   }
 }
+
 export default StateTotalData

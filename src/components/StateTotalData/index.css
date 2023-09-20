@@ -1,91 +1,21 @@
-.ul-list-eachstate {
+.ul-list-each-state {
   list-style-type: none;
-
-  padding: 0;
-  margin-left: -20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 @media screen and (min-width: 768px) {
-  .ui-list-eachstate {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+  .ui-list-each-state {
     margin: 0;
   }
 }
 
-.category-item {
-  text-align: center;
-  min-width: 120px;
-  margin: 0px 10px;
-  padding: 25px;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.card {
   text-align: center;
   font-family: 'Roboto';
-}
-
-.confirmed {
-  color: #ff073a;
-}
-.confirmed:focus {
-  background: #331427;
-}
-.confirmed:hover {
-  background: #331427;
-}
-.active {
-  color: #007bff;
-}
-.active:focus {
-  background: #132240;
-}
-.active:hover {
-  background: #132240;
-}
-.recovered {
-  color: #28a745;
-}
-.recovered:focus {
-  background: #182829;
-}
-.recovered:hover {
-  background: #182829;
-}
-.deceased {
-  color: #6c757d;
-}
-.deceased:focus {
-  background: #212230;
-}
-.deceased:hover {
-  background: #212230;
-}
-
-.confirmed-block {
-  background: #331427;
-}
-
-.active-block {
-  background: #132240;
-}
-
-.recovered-block {
-  background: #182829;
-}
-
-.deceased-block {
-  background: #212230;
-}
-
-.card {
   width: 148px;
   height: 148px;
   border-radius: 8px;
@@ -93,13 +23,106 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 16px 5px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
   .card {
+    width: 254px;
+    height: 222px;
+    border-radius: 12px;
+  }
+}
+
+.confirmed {
+  color: #ff073a;
+}
+
+.confirmed:focus {
+  background: #331427;
+}
+
+.confirmed:hover {
+  background: #331427;
+}
+
+.active {
+  color: #007bff;
+}
+
+.active:focus {
+  background: #132240;
+}
+
+.active:hover {
+  background: #132240;
+}
+
+.recovered {
+  color: #28a745;
+}
+
+.recovered:focus {
+  background: #182829;
+}
+
+.recovered:hover {
+  background: #182829;
+}
+
+.deceased {
+  color: #6c757d;
+}
+
+.deceased:focus {
+  background: #212230;
+}
+
+.deceased:hover {
+  background: #212230;
+}
+
+.confirmed-block {
+  background: #331427;
+  width: 158px;
+  height: 158px;
+}
+
+.active-block {
+  background: #132240;
+  width: 158px;
+  height: 158px;
+}
+
+.recovered-block {
+  background: #182829;
+  width: 158px;
+  height: 158px;
+}
+
+.deceased-block {
+  background: #212230;
+  width: 158px;
+  height: 158px;
+}
+
+@media screen and (min-width: 768px) {
+  .confirmed-block {
     width: 264px;
     height: 232px;
-    border-radius: 12px;
+  }
+  .active-block {
+    width: 264px;
+    height: 232px;
+  }
+  .recovered-block {
+    width: 264px;
+    height: 232px;
+  }
+  .deceased-block {
+    width: 264px;
+    height: 232px;
   }
 }
 
@@ -110,6 +133,7 @@
   font-size: 16px;
   line-height: 24px;
   text-align: center;
+  margin-bottom: 16px;
 }
 
 @media screen and (min-width: 768px) {
@@ -125,6 +149,7 @@
   font-size: 12px;
   line-height: 16px;
   text-align: center;
+  margin-top: 16px;
 }
 
 @media screen and (min-width: 768px) {

@@ -35,7 +35,7 @@ class About extends Component {
     const response = await fetch(faqsApiUrl, options)
     if (response.ok === true) {
       const fetchedData = await response.json()
-      console.log(fetchedData)
+      // console.log(fetchedData)
       this.setState({
         faqsList: fetchedData.faq,
         apiStatus: apiStatusConstants.success,
@@ -52,7 +52,7 @@ class About extends Component {
         <p className="about-description">
           COVID-19 vaccines be ready for distribution
         </p>
-        <ul className="faq-list" testid="faqsUnorderedList">
+        <ul className="faq-list" data-testid="faqsUnorderedList">
           {faqsList.map(eachFaq => (
             <FaqItem faqData={eachFaq} key={eachFaq.qno} />
           ))}
@@ -63,7 +63,7 @@ class About extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="aboutRouteLoader">
+    <div className="loader-container" data-testid="aboutRouteLoader">
       <Loader type="Oval" color="#0b69ff" height="40" width="40" />
     </div>
   )

@@ -1,4 +1,4 @@
-.barcharts-container {
+.bar-charts-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@
   color: #cbd5e1;
 }
 
-.barchart-container {
+.bar-chart-container {
   width: 100%;
   display: flex;
   justify-content: center;
